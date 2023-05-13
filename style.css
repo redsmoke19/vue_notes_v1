@@ -1,0 +1,58 @@
+.notes {
+  padding: 0;
+  list-style: none;
+  margin: 40px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.note {
+  align-items: center;
+  display: inline-flex;
+}
+
+.note:hover .note__edit {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.note:not(:last-child) {
+  margin: 0 0 15px 0;
+}
+
+.note__text {
+  font-weight: bold;
+}
+
+.note__remove,
+.note__edit,
+.note__accept {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+  transition: opacity ease-out 0.2s;
+}
+
+.note__remove:hover,
+.note__accept:hover {
+  opacity: 0.6;
+}
+
+.note__accept {
+  font-size: 20px;
+  margin: 0 0 0 10px;
+}
+
+.note__edit {
+  margin: 0 0 0 10px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.note__edit svg {
+  height: 15px;
+  width: 15px;
+}
