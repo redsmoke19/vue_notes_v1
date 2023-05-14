@@ -40,6 +40,11 @@ const App = {
 
       // Так не работает и всегда ошибка(
       // this.$refs.input.focus()
+
+      this.$nextTick(() => {
+        this.$refs.input[0].focus();
+        // console.log(this.$refs.input[0]);
+      })
     },
 
     acceptChanges(note, e) {
