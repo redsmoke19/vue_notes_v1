@@ -56,3 +56,7 @@
   height: 15px;
   width: 15px;
 }
+
+.note__input.is-error {
+  background-color: rgba(251, 114, 114, 0.4);
+}

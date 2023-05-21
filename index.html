@@ -24,14 +24,25 @@
                 class="note__remove"
                 type="button">&#10005;
         </button>
-        <div v-if="!note.isEdited"
-             class="note__wrapper">
+        <div v-if="editingItem === note"
+             class="note__edited">
+          <input v-model="editingItem.name"
+                 :class="{ 'is-error': errorInput }"
+                 type="text"
+                 class="note__input"
+                 ref="input"
+          >
+          <button @click="getAcceptChanges(note)"
+                  class="note__accept">&#10003;
+          </button>
+        </div>
+        <div v-else class="note__wrapper">
           <span class="note__text">
             {{note.name}}
           </span>
 
-          <!-- Так же не смог разобраться как при клике на кнопку редактировать сразу поставить фокус в поле ввода. Пробовал сделать с помощью ref на инпуте, но всегда ошибка( -->
           <button @click="getEdited(note)"
+                  :disabled="errorInput"
                   class="note__edit"
                   type="button">
             <svg fill="#000000" height="20" width="20" xmlns="http://www.w3.org/2000/svg"
@@ -43,31 +54,11 @@
             </svg>
           </button>
         </div>
-        <div v-else class="note__edited">
-          <!-- Пробовал тут у инпута написать ref="input" что бы фокус получать, но не получается, всегда ошибка в консоли -->
-          <input v-model="editedText"
-                 @keydown.enter="acceptChanges(note)"
-                 type="text"
-                 class="note__input"
-                 ref="input"
-          >
-          <!-- Тут попробовал два варианта, один через v-model, а другой получал value из e.target у инпута, но второй вариант не подошел из за того, что тогда при нажатии на кнопку не применяется редактирование -->
-
-          <!-- <input :value="note.name"-->
-          <!-- @keydown.enter="acceptChanges(note, $event)"-->
-          <!-- type="text"-->
-          <!-- class="note__input"-->
-          <!-- > -->
-          <button @click="acceptChanges(note)" class="note__accept">&#10003;</button>
-
-          <!-- Такой способ с e.target не работает -->
-          <!-- <button @click="acceptChanges(note, $event)" class="note__accept">&#10003;</button> -->
-        </div>
       </li>
     </ul>
   </div>
 </div>
 
-<script src="./app.js"></script>
+<script type="module" src="./app.js"></script>
 </body>
 </html>
